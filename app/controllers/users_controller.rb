@@ -3,6 +3,7 @@ class UsersController < ActionController::API
 
 	def index
 	  @users = User.all
+	  @creators = User.all.creators
 
 	  render json: @users
 	end
@@ -18,7 +19,15 @@ class UsersController < ActionController::API
 	end
 
 	def destroy
+
 	end
+
+	def get_creators
+		@creators = User.creators
+
+		render json: @creators
+	end
+
 
 
 	private
