@@ -13,12 +13,16 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  get 'users/:id/info', :to => 'users#profile_info'
+
   resources :choices, except: [:new, :edit]
   resources :questions, except: [:new, :edit]
   resources :survey_users, except: [:new, :edit]
   resources :surveys, except: [:new, :edit]
   resources :text_responses, except: [:new, :edit]
   resources :users, except: [:new, :edit]
+
 
   # Example resource route with options:
   #   resources :products do

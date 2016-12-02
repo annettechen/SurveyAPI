@@ -1,0 +1,38 @@
+Controller: USERSCONTROLLER
+Methods
+INDEX (/users):
+SHOW (/users/{id}): 
+
+Controller: SURVEYSCONTROLLER
+Methods:
+INDEX (/surveys): GET method that returns a collection of all the surveys
+SHOW (/surveys/{id}): GET method that returns a specific survey
+ANALYZE (/surveys/{id}/analytics): GET method that returns analytics object for specific survey (calls many survey model methods that do the analytics)
+
+Controller: RESTRICTIONSCONTOLLER
+Methods:
+INDEX (/restrictions): GET method that returns all the restrictions 
+SHOW (/restrictions): GET methods that returns a specfic survey 
+
+description of other restriction methods to be implemented:
+- for a specific survey - what is the breakdown of genders? (male, female, other)
+	- restrictions for survey with id __ - return array of counts for each gender [male_count, female_count, other_count]
+	- define the method in the model - call the method in the controller? 
+- for a specific survey - what is the average age?
+	- define method to get avg age in the model - call it in the controller
+
+write these methods in the survey model? Survey.restrictions.avg_age 
+for a specific survey - get all the restrictions and from these calculate the average age
+
+for a specific survey - get the list of all the ages
+	- Restrictions.withSurveyId(x).each do {array.push Restriction.age}
+	- Survey.restrictions.each do |x| {array.push x.age} - in the survey model
+
+
+
+i think this is all wrong
+
+A survey has many responses, and has one restriction. The restriction will be used to filter surveys. For a specific user, lets say a female age 20, we would write a method to look through the restrictions and find all the ones that include females and age 20. This creates a list of restricitons, each restriction is linked to a survey, and from this list you can get the list of surveys that is returned and shown to the user. 
+
+A response has the response as well as user_demographics - When looking at all the responses for a certain survey, look at a survey - find all the responses that match that survey, and then call methods on these responses - call to the user info to run methods. In the Survey model (for lets say find average age) - Suvey.responses.each do |x| {sum += x.user.age return sum / Survey.responses.count}
+
