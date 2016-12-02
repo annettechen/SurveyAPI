@@ -16,6 +16,13 @@ class UsersController < ActionController::API
 	end
 
 	def update
+		@user = current_user
+	    if @user.update_attributes(user_params)
+	      flash[:notice] = "#{@user.name} is updated."
+	      redirect_to @user
+	    else
+	      render :action => 'edit'
+	    end
 	end
 
 	def destroy
