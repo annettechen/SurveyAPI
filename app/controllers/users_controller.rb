@@ -24,7 +24,7 @@ class UsersController < ActionController::API
 
 	def profile_info
 		@user_surveys = SurveyUser.surveys_for_given_taker(@user)
-		render json: {:demographics => @user, :eligible_survey => @user_surveys}
+		render json: {:demographics => @user, :eligible_surveys => @user_surveys}
 	end
 
 

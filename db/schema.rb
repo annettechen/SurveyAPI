@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20161130080551) do
   create_table "survey_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "survey_id"
-    t.integer  "relationship"
+    t.integer  "relationship"  
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
