@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117020229) do
+ActiveRecord::Schema.define(version: 20161202051102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20161117020229) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "ethnicities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.integer  "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string   "text"
     t.integer  "question_type"
@@ -31,6 +43,31 @@ ActiveRecord::Schema.define(version: 20161117020229) do
     t.integer  "survey_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "restriction_ethnicities", force: :cascade do |t|
+    t.integer  "restriction_id"
+    t.integer  "ethnicity_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "restriction_genders", force: :cascade do |t|
+    t.integer  "restriction_id"
+    t.integer  "gender_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "restrictions", force: :cascade do |t|
+    t.integer  "age_ub"
+    t.integer  "age_lb"
+    t.float    "loc_center_long"
+    t.float    "loc_center_lat"
+    t.integer  "loc_radius"
+    t.integer  "num_takers"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "survey_users", force: :cascade do |t|
@@ -43,12 +80,15 @@ ActiveRecord::Schema.define(version: 20161117020229) do
 
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "active"
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "est_time"
+    t.integer  "points"
+    t.string   "url"
+    t.integer  "restriction_id"
   end
 
   create_table "text_responses", force: :cascade do |t|
@@ -62,11 +102,13 @@ ActiveRecord::Schema.define(version: 20161117020229) do
     t.string   "name"
     t.string   "email"
     t.integer  "age"
-    t.integer  "gender"
+    t.integer  "gender_id"
     t.boolean  "taker"
     t.boolean  "creator"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "ethnicity_id"
+    t.integer  "points"
   end
 
 end
