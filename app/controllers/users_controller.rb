@@ -1,5 +1,5 @@
 class UsersController < ActionController::API
-	before_action :set_user, only: [:show, :update, :destroy]
+	before_action :set_user, only: [:show, :update, :destroy, :profile_info]
 
 	def index
 	  @users = User.all
@@ -21,6 +21,12 @@ class UsersController < ActionController::API
 	def destroy
 
 	end
+
+	def profile_info
+		@user_surveys = SurveyUser.surveys_for_given_taker(@user)
+		render json: {:demographics => @user, :eligible_surveys => @user_surveys}
+	end
+
 
 	def get_creators
 		@creators = User.creators

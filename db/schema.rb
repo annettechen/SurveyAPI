@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130080551) do
+ActiveRecord::Schema.define(version: 20161202033349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20161130080551) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "ethnicities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.integer  "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string   "text"
     t.integer  "question_type"
@@ -33,8 +45,21 @@ ActiveRecord::Schema.define(version: 20161130080551) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "restriction_ethnicities", force: :cascade do |t|
+    t.integer  "restriction_id"
+    t.integer  "ethnicity_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "restriction_genders", force: :cascade do |t|
+    t.integer  "restriction_id"
+    t.integer  "gender_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "restrictions", force: :cascade do |t|
-    t.integer  "gender"
     t.integer  "age_ub"
     t.integer  "age_lb"
     t.float    "loc_center_long"
@@ -81,6 +106,8 @@ ActiveRecord::Schema.define(version: 20161130080551) do
     t.boolean  "creator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "ethnicity"
+    t.integer  "points"
   end
 
 end
