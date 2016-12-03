@@ -12,6 +12,10 @@ class RestrictionsController < ActionController::API
 	end
 
 	def create
+		@restriction = Restriction.create(restriction_params)
+		if @restriction.save!
+			render json: @restriction
+		end
 	end
 
 	def update

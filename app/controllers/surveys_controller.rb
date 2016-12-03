@@ -12,6 +12,10 @@ class SurveysController < ActionController::API
 	end
 
 	def create
+		@survey = Survey.create(survey_params)
+		if @survey.save!
+			render json: @survey
+		end
 	end
 
 	def update
