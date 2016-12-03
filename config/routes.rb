@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :surveys, except: [:new, :edit]
   resources :text_responses, except: [:new, :edit]
   resources :users, except: [:new, :edit]
+  resources :restrictions, except: [:new, :edit]
 
 
   # Example resource route with options:

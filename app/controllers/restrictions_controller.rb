@@ -2,7 +2,7 @@ class RestrictionsController < ActionController::API
 	before_action :set_restriction, only: [:show, :update, :destroy]
 
 	def index
-	  @restrictions = Restrictions.all
+	  @restrictions = Restriction.all
 
 	  render json: @restrictions
 	end
