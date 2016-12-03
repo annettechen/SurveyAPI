@@ -27,10 +27,10 @@ class RestrictionsController < ActionController::API
 
 	private
 		def set_restriction
-	      @text_response = TextResponse.find(params[:id])
+	      @restriction = Restriction.find(params[:id])
 	    end
 
 	    def restriction_params
-	      params.require(:restriction).permit(:gender, :age_ub, :age_lb, :loc_center_long, :loc_center_lat, :loc_radius, :num_takers)
+	      params.require(:restriction).permit(:age_ub, :age_lb, :loc_center_long, :loc_center_lat, :loc_radius, :num_takers, :survey_id)
 	    end
 end

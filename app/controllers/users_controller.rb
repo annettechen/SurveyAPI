@@ -53,7 +53,7 @@ class UsersController < ActionController::API
 	    end
 
 	    def user_params
-	      params.require(:user).permit(:name, :email, :age, :gender, :taker, :creator)
+	      params.require(:user).permit(:name, :email, :age, :gender, :taker, :creator, :points)
 	    end
 end
 
