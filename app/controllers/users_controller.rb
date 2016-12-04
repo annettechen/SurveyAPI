@@ -38,6 +38,10 @@ class UsersController < ActionController::API
 		render json: {:demographics => @user, :eligible_surveys => @user_surveys}
 	end
 
+	def filtered_surveys
+		@filt_surveys = Survey.get_surveys_user_can_take(@user)
+		render json: @filt_surveys
+	end
 
 	def get_creators
 		@creators = User.creators
