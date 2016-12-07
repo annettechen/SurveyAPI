@@ -43,6 +43,11 @@ class UsersController < ActionController::API
 		render json: @filt_surveys
 	end
 
+	def created_surveys
+		@created_surveys = Survey.get_surveys_user_created(@user)
+		render json: @created_surveys
+	end
+
 	def get_creators
 		@creators = User.creators
 
