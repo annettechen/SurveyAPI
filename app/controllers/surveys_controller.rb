@@ -31,6 +31,6 @@ class SurveysController < ActionController::API
 	    end
 
 	    def survey_params
-	      params.require(:survey).permit(:name, :active, :description, :start_date, :end_date, :est_time, :points, :url)
+	      params.require(:survey).permit(:name, :description, :est_time, :points, :url)
 	    end
 end
