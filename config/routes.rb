@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get 'users/:id/info', :to => 'users#profile_info'
   get 'users/:id/takeableSurveys', :to => 'users#filtered_surveys'
+  get 'users/:id/createdSurveys', :to => 'users#created_surveys'
 
   resources :choices, except: [:new, :edit]
   resources :questions, except: [:new, :edit]
