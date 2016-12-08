@@ -40,7 +40,7 @@ class UsersController < ActionController::API
 
 	def filtered_surveys
 		@filt_surveys = Survey.get_surveys_user_can_take(@user)
-		render json: @filt_surveys
+		render json: {:filts => @filt_surveys}
 	end
 
 	def created_surveys
