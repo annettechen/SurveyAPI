@@ -39,7 +39,6 @@ class UsersController < ActionController::API
 	end
 
 	def filtered_surveys
-		@user = current_user
 		@filt_surveys = Survey.get_surveys_user_can_take(@user)
 		render json: @filt_surveys
 	end
