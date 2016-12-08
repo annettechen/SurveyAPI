@@ -1,5 +1,5 @@
 class UsersController < ActionController::API
-	before_action :set_user, only: [:show, :update, :destroy, :profile_info, :filtered_surveys]
+	before_action :set_user, only: [:show, :update, :destroy, :profile_info, :filtered_surveys, :created_surveys, :get_creators]
 
 	def index
 	  @users = User.all
@@ -20,7 +20,6 @@ class UsersController < ActionController::API
 	end
 
 	def update
-		@user = current_user
 	    if @user.update_attributes(user_params)
 	      flash[:notice] = "#{@user.name} is updated."
 	      redirect_to @user
