@@ -1,5 +1,5 @@
 class UsersController < ActionController::API
-	before_action :set_user, only: [:show, :update, :destroy, :profile_info]
+	before_action :set_user, only: [:show, :update, :destroy, :profile_info, :filtered_surveys]
 
 	def index
 	  @users = User.all
@@ -39,6 +39,7 @@ class UsersController < ActionController::API
 	end
 
 	def filtered_surveys
+		@user = current_user
 		@filt_surveys = Survey.get_surveys_user_can_take(@user)
 		render json: @filt_surveys
 	end
