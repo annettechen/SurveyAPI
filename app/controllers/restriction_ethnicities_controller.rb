@@ -31,6 +31,6 @@ class RestrictionEthnicitiesController < ActionController::API
 	    end
 
 	    def restriction_ethnicity_params
-	      params.require(:restriction_gender).permit(:restriction_id, :ethnicity_id)
+	      params.require(:restriction_ethnicity).permit(:restriction_id, :ethnicity_id)
 	    end
 end

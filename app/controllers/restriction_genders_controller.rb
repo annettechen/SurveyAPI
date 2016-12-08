@@ -2,7 +2,7 @@ class RestrictionGendersController < ActionController::API
 	before_action :set_restriction_gender, only: [:show, :update, :destroy]
 
 	def index
-	  @restriction_genders	= RestrictionGenders.all
+	  @restriction_genders	= RestrictionGender.all
 
 	  render json: @restriction_genders
 	end
