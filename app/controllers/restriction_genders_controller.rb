@@ -1,4 +1,4 @@
-class RestrictionGenderssController < ActionController::API
+class RestrictionGendersController < ActionController::API
 	before_action :set_restriction_gender, only: [:show, :update, :destroy]
 
 	def index
