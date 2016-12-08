@@ -15,6 +15,8 @@ class RestrictionEthnicitiesController < ActionController::API
 		@restriction_ethnicity = RestrictionEthnicity.create(restriction_ethnicity_params)
 		if @restriction_ethnicity.save!
 			render json: @restriction_ethnicity
+		else
+			puts "error here is the problem!!!!!!" + restriction_ethnicity_params
 		end
 	end
 
