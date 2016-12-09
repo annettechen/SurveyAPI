@@ -17,16 +17,26 @@ end
 #relationship -> creator(0), taker(1)
 def self.get_surveys_user_created(user) 
 
-		createdSurveys = Survey.survey_users.select{|a| a.user_id == user.id and a.relationship == '0'}
+		createdSurveys = SurveyUser.where(user: user).where(relationship: 0).map{|s| s.survey}
 		return createdSurveys
+
 	end
 
 def self.get_surveys_user_can_take(user) 
 
 		possibleSurveys = Survey.select{|a| a.checkGender(user) and a.checkAge(user) and a.checkRace(user)}
 		# possibleSurveys = Survey.select{|a| a.checkGender(user) and a.checkAge(user)}
-		return possibleSurveys
+		createdSurveys = get_surveys_user_created(user)
+		takenSurveys = get_surveys_user_took(user)
+		resSurveys = possibleSurveys - createdSurveys - takenSurveys
+		return resSurveys
 
+	end
+
+	def self.get_surveys_user_took(user)
+
+		surveys = SurveyUser.where(user: user).where(relationship: 1).map{|s| s.survey}
+		return surveys
 	end
 
 	def checkGender(user)
