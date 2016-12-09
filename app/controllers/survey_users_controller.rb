@@ -31,7 +31,7 @@ class SurveyUsersController < ActionController::API
 	    end
 
 	    def surveyuser_params
-	      params.require(:surveyuser).permit(:survey_id, :user_id, :relationship)
+	      params.require(:survey_user).permit(:survey_id, :user_id, :relationship)
 	    end
 end
 
