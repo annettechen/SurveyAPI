@@ -19,15 +19,23 @@ def self.get_surveys_user_created(user)
 
 		createdSurveys = SurveyUser.where(user: user).where(relationship: 0).map{|s| s.survey}
 		return createdSurveys
-		
+
 	end
 
 def self.get_surveys_user_can_take(user) 
 
 		possibleSurveys = Survey.select{|a| a.checkGender(user) and a.checkAge(user) and a.checkRace(user)}
 		# possibleSurveys = Survey.select{|a| a.checkGender(user) and a.checkAge(user)}
-		return possibleSurveys
+		createdSurveys = get_surveys_user_created(user)
+		takenSurveys = get_surveys_user_took(user)
+		return possibleSurveys - createdSurveys - takenSurveys
 
+	end
+
+	def self.get_surveys_user_took(user)
+
+		surveys = SurveyUser.where(user: user).where(relationship: 1).map{|s| s.survey}
+		return surveys
 	end
 
 	def checkGender(user)
