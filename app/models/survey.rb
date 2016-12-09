@@ -28,7 +28,8 @@ def self.get_surveys_user_can_take(user)
 		# possibleSurveys = Survey.select{|a| a.checkGender(user) and a.checkAge(user)}
 		createdSurveys = get_surveys_user_created(user)
 		takenSurveys = get_surveys_user_took(user)
-		return possibleSurveys - createdSurveys - takenSurveys
+		#resSurveys = possibleSurveys - createdSurveys - takenSurveys
+		return possibleSurveys
 
 	end
 
