@@ -17,7 +17,8 @@ end
 #relationship -> creator(0), taker(1)
 def self.get_surveys_user_created(user) 
 
-		createdSurveys = Survey.survey_users.select{|a| a.user_id == user.id and a.relationship == '0'}
+		sUsers = SurveyUser.select{|a| a.survey_id == self.id}
+		createdSurveys = sUsers.select{|a| a.user_id == user.id and a.relationship == '0'}
 		return createdSurveys
 	end
 
