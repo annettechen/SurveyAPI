@@ -44,6 +44,7 @@ class UsersController < ActionController::API
 
 	def created_surveys
 		@created_surveys = Survey.get_surveys_user_created(@user)
+		@created_surveys.select! {|x| !x.nil?}
 		render json: @created_surveys
 	end
 
